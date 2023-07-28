@@ -1,8 +1,15 @@
 import { useState } from "react";
-import "./styles/game-board.css";
+import "../styles/functionalstyles/game-board.css";
 
 export function FunctionalGameBoard({ handleGuess, fishIndex }) {
   const [userInput, setUserInput] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleGuess(userInput);
+    setUserInput("");
+  }
+
   return (
     <div id="game-board">
       <div id="fish-container">
@@ -10,11 +17,7 @@ export function FunctionalGameBoard({ handleGuess, fishIndex }) {
       </div>
       <form
         id="fish-guess-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleGuess(userInput);
-          setUserInput("");
-        }}
+        onSubmit={handleSubmit}
       >
         <label htmlFor="fish-guess">What kind of fish is this?</label>
         <input

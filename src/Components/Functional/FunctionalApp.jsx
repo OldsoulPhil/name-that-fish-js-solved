@@ -4,7 +4,7 @@ import { FunctionalFinalScore } from "./FunctionalFinalScore";
 import { useState } from "react";
 import { Images } from "../../assets/Images";
 
-const initialFishes= [
+const initialFishes = [
   {
     name: "trout",
     url: Images.trout,
@@ -24,14 +24,13 @@ const initialFishes= [
 ];
 
 export function FunctionalApp() {
-  const [fishIndex, setFishIndex] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
 
+  const fishIndex = correctAnswers + incorrectAnswers;
   const doAnswersStillExist = initialFishes.length - fishIndex > 0;
 
   const handleGuess = (guess) => {
-    setFishIndex(fishIndex + 1);
     if (initialFishes[fishIndex].name === guess) {
       setCorrectAnswers(correctAnswers + 1);
     } else {

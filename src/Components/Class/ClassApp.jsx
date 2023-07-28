@@ -32,7 +32,7 @@ export class ClassApp extends Component {
 
   render() {
     const { correctAnswerCount, fishIndex, incorrectAnswerCount } = this.state;
-    this.doAnswersStillExist = initialFishes.length - fishIndex > 0;
+    const doAnswersStillExist = initialFishes.length - fishIndex > 0;
 
     this.handleGuess = (guess) => {
       this.setState({ fishIndex: fishIndex + 1 });
@@ -48,21 +48,21 @@ export class ClassApp extends Component {
     return (
       <>
         <>
-          {this.doAnswersStillExist && (
+          {doAnswersStillExist && (
             <ClassScoreBoard 
               answersLeft={this.answersLeft}
               incorrectAnswerCount={incorrectAnswerCount}
               correctAnswerCount={correctAnswerCount}
             />
           )}
-          {this.doAnswersStillExist && (
+          {doAnswersStillExist && (
             <ClassGameBoard
               fishIndex={initialFishes[fishIndex]}
               handleGuess={this.handleGuess}
             />
           )}
         </>
-        {!this.doAnswersStillExist && (
+        {!doAnswersStillExist && (
           <ClassFinalScore
             correctAnswerCount={correctAnswerCount}
             totalCount={initialFishes.length}
